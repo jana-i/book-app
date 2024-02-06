@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: book-app-config
+  namespace: book-app-ns
+data:
+  SPRING_DATASOURCE_URL: 'jdbc:postgresql://book-app-postgres-service:5432/bookdb'
+  POSTGRES_USERNAME: 'postgres'
+  SPRING_DATASOURCE_USERNAME: 'postgres'
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: book-app-app-secret
+  namespace: book-app-ns
+type: Opaque
+data:
+  SPRING_DATASOURCE_PASSWORD: bW9uaWthMTIz
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-app-deployment
+  namespace: book-app-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-app
+  minReadySeconds: 25
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: book-app
+    spec:
+      containers:
+        - name: book-app
+          image: janaii/app-image:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: book-app-config
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: book-app-config
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: book-app-app-secret
+                  key: SPRING_DATASOURCE_PASSWORD
