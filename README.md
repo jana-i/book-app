@@ -1,4 +1,4 @@
-#Book App: Spring Boot, PostgreSQL, Docker, CI/CD & Kubernetes
+# Book App: Spring Boot, PostgreSQL, Docker, CI/CD & Kubernetes
 
 A book catalog web application built with Spring Boot and PostgreSQL. Users can add, edit, delete, and review books. 
 The project covers a complete DevOps workflow: containerization with Docker, orchestration with Docker Compose, 
@@ -11,7 +11,7 @@ Features
 - Review: write a personal review or critique for a book
 
 
-##Tech Stack
+## Tech Stack
 
 - Backend	Java, Spring Boot, Spring Data JPA, Hibernate (ORM)
 - Database	PostgreSQL
