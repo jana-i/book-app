@@ -22,9 +22,9 @@ a CI pipeline with GitHub Actions that publishes the image to Docker Hub, and de
 
 ## What I learned
 
-Containerizing a Spring Boot application with a multi-stage Docker build;
-Orchestrating an app and its database with Docker Compose;
-Automating image builds and publishing with GitHub Actions and repository secrets;
-Writing Kubernetes manifests for a stateless app (Deployment) and a stateful database (StatefulSet with a PersistentVolumeClaim);
-Using ConfigMaps, Secrets, Services and Ingress, and isolating resources in a namespace;
-Running and debugging a local cluster with k3d and kubectl.
+- Containerizing a Spring Boot application with a multi-stage Docker build
+- Orchestrating an app and its database with Docker Compose
+- Automating image builds and publishing with GitHub Actions and repository secrets
+- Writing Kubernetes manifests for a stateless app (Deployment) and a stateful database (StatefulSet with a PersistentVolumeClaim)
+- Using ConfigMaps, Secrets, Services and Ingress, and isolating resources in a namespace
+- Running and debugging a local cluster with k3d and kubectl
